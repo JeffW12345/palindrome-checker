@@ -52,7 +52,7 @@ public class Palindrome {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter a word or phrase to check: ");
 		String wordOrPhrase = scanner.nextLine();
-		if (wordOrPhrase.length() < 1 && !validSelectionMade) {
+		if (wordOrPhrase.length() < 1) {
 			System.out.println("You did not enter anything. Please try again.");
 			getUserInput();
 		}
