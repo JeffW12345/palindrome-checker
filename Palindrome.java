@@ -1,3 +1,9 @@
+/*
+ * A palindrome is a word or phrase whose letters are the same when read forwards as backwards. 
+ * 
+ * This program takes a user input and tells the user whether the word or phrase they've entered is a palindrome
+ */
+
 import java.util.Scanner;
 
 public class Palindrome {
@@ -45,22 +51,19 @@ public class Palindrome {
 	public static void getUserInput() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter a word or phrase to check: ");
-		while (!validSelectionMade) {
-			String wordOrPhrase = scanner.nextLine();
-			if (wordOrPhrase.length() < 1 && !validSelectionMade) {
-				System.out.println("You did not enter anything. Please try again.");
-				getUserInput();
-			}
-
-			if (!containsLetters(wordOrPhrase) && !validSelectionMade) {
-				System.out.println("You need to enter a word or phrase with at least two letters.");
-				System.out.println("Please try again.");
-				getUserInput();
-			}
-			if (wordOrPhrase.length() >= 1 && containsLetters(wordOrPhrase)) {
-				userInput = wordOrPhrase;
-				validSelectionMade = true;
-			}
+		String wordOrPhrase = scanner.nextLine();
+		if (wordOrPhrase.length() < 1 && !validSelectionMade) {
+			System.out.println("You did not enter anything. Please try again.");
+			getUserInput();
+		}
+		if (!containsMinTwoLetters(wordOrPhrase) && !validSelectionMade) {
+			System.out.println("You need to enter a word or phrase with at least two letters.");
+			System.out.println("Please try again.");
+			getUserInput();
+		}
+		if (wordOrPhrase.length() >= 1 && containsMinTwoLetters(wordOrPhrase)) {
+			userInput = wordOrPhrase;
+			validSelectionMade = true;
 		}
 		scanner.close();
 	}
@@ -68,7 +71,7 @@ public class Palindrome {
 	// Returns false if there are less than two A-Z and a-z characters, and true
 	// otherwise.
 
-	private static boolean containsLetters(String wordOrPhraseRaw) {
+	private static boolean containsMinTwoLetters(String wordOrPhraseRaw) {
 		String lettersOnlyLowerCase = wordOrPhraseRaw.replaceAll("[^a-zA-Z]", ""); // No non-letter characters
 		if (lettersOnlyLowerCase.length() < 2) {
 			return false;
