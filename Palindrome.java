@@ -5,10 +5,16 @@ public class Palindrome {
 	private static String userInput;
 	private static boolean validSelectionMade = false;
 
+	/*
+	 * This method checks if the user's inputted word or phrase is a palindrome. The
+	 * non-letter characters have been removed from 'wordOrPhrase' prior it being
+	 * passed to this method.
+	 */
+
 	private static boolean isPalindrome(String wordOrPhrase) {
 		int length = wordOrPhrase.length();
-		char[] destArray = new char[length];
-		wordOrPhrase.getChars(0, length, destArray, 0); // Copies string to array 'destArray'
+		char[] wordOrPhraseAsArray = new char[length];
+		wordOrPhrase.getChars(0, length, wordOrPhraseAsArray, 0);
 		/*
 		 * Starts with the start and end letters and checks if they are equivalent. Then
 		 * checks if the letter to the right of the first letter is the same as the
@@ -21,13 +27,20 @@ public class Palindrome {
 		 */
 		int count = 0;
 		while (count < length / 2) {
-			if (destArray[count] != destArray[length - count - 1]) {
+			if (wordOrPhraseAsArray[count] != wordOrPhraseAsArray[length - count - 1]) {
 				return false;
 			}
 			count++;
 		}
 		return true; // If 'false' hasn't been returned, it must be a palindrome.
 	}
+
+	/*
+	 * Requests user input. Asks user to try again if they press 'return' without
+	 * entering a value or if they enter a word or phrase containing less than two
+	 * letters.
+	 * 
+	 */
 
 	public static void getUserInput() {
 		Scanner scanner = new Scanner(System.in);
@@ -52,7 +65,8 @@ public class Palindrome {
 		scanner.close();
 	}
 
-	// Returns false if < two A-Z and a-z characters, and tre otherwise.
+	// Returns false if there are less than two A-Z and a-z characters, and true
+	// otherwise.
 
 	private static boolean containsLetters(String wordOrPhraseRaw) {
 		String lettersOnlyLowerCase = wordOrPhraseRaw.replaceAll("[^a-zA-Z]", ""); // No non-letter characters
