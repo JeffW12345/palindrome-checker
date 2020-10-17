@@ -2,8 +2,6 @@ import java.util.Scanner;
 
 public class Palindrome {
 
-	static String wordAsString[];
-
 	private static boolean isPalindrome(String wordOrPhrase) {
 		int length = wordOrPhrase.length();
 		char[] destArray = new char[length];
@@ -28,10 +26,6 @@ public class Palindrome {
 		return true; // If 'false' hasn't been returned, it must be a palindrome.
 	}
 
-	public String toString() {
-		return null;
-	}
-
 	public static void main(String[] args) {
 		Scanner userInput = new Scanner(System.in);
 		System.out.println("PALINDROME CHECKER");
@@ -39,12 +33,12 @@ public class Palindrome {
 		System.out.println("Enter a word or phrase to check: ");
 		String wordOrPhraseRaw = userInput.nextLine();
 		// Word or phrase removed of non-letter characters and made lower case.
-		String wordOrPhraseLettersOnly = wordOrPhraseRaw.replaceAll("[^a-zA-Z]", "");
-		String wordOrPhraseLettersOnlyLowerCase = wordOrPhraseLettersOnly.toLowerCase();
-		if (isPalindrome(wordOrPhraseLettersOnlyLowerCase)) {
-			System.out.println(wordOrPhraseRaw + " is a palindrome");
+		String lettersOnlyLowerCase = wordOrPhraseRaw.replaceAll("[^a-zA-Z]", "").toLowerCase();
+		if (isPalindrome(lettersOnlyLowerCase)) {
+			System.out.println("\'" + wordOrPhraseRaw + "\' is a palindrome");
 		} else {
-			System.out.println(wordOrPhraseRaw + " is NOT a palindrome");
+			System.out.println("\'" + wordOrPhraseRaw + "\' is NOT a palindrome");
 		}
+		userInput.close();
 	}
 }
